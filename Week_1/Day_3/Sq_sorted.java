@@ -5,36 +5,26 @@ public class Sq_sorted {
 
     static int[] squares(int[] nums){
 
-        int n = nums.length;
-
-        int[] ans = new int[n];
-
-        int left = 0;
-        int right = n - 1;
-
-        int idx = n - 1;
-
-        while(left <= right){
-
-            int leftSq = nums[left] * nums[left];
-            int rightSq = nums[right] * nums[right];
-
-            if(leftSq > rightSq){
-
-                ans[idx] = leftSq;
-                left++;
-            }
-
-            else{
-
-                ans[idx] = rightSq;
-                right--;
-            }
-
-            idx--;
+        int[] res = new int[nums.length];
+        for(int i = 0; i < nums.length; i++){
+            nums[i] = nums[i] * nums[i];
         }
 
-        return ans;
+        int head = 0;
+        int tail = nums.length - 1;
+        for(int j = nums.length - 1; j >= 0; j--){
+            if(nums[head] < nums[tail]){
+                res[j] = nums[tail];
+                tail--;
+            }
+            else{
+                res[j] = nums[head];
+                head++;
+            }
+        }
+
+        return res;
+
     }
 
     public static void main(String[] args) {
